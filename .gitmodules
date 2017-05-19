@@ -15,10 +15,10 @@
 	url = git://github.com/openlayers/openlayers.git
 [submodule "app/static/externals/PrintPreview"]
 	path = app/static/externals/PrintPreview
-	url = git://github.com/GeoNode/PrintPreview.git
+	url = https://github.com/boundlessgeo/PrintPreview.git
 [submodule "externals/stick"]
 	path = externals/stick
 	url = https://github.com/hns/stick.git
 [submodule "externals/ringojs-fork"]
 	path = externals/ringojs-fork
-	url = git://github.com/tschaub/ringojs.git
+	url = https://github.com/geosolutions-it/ringojs.git
