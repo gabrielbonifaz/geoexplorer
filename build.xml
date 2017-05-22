@@ -38,9 +38,9 @@
         <copy todir="${ringo}/lib" flatten="true" includeEmptyDirs="false">
             <fileset dir="lib"/>
         </copy>
-        
+
     </target>
-    
+
     <target name="buildjs">
 
         <mkdir dir="${build}/${ant.project.name}/WEB-INF/app/static/script"/>
@@ -49,18 +49,23 @@
             <arg path="externals/buildkit/lib/buildkit/build.js"/>
             <arg line="-o ${build}/${ant.project.name}/WEB-INF/app/static/script buildjs.cfg"/>
         </java>
+        <java jar="${ringo}/run.jar" fork="true" failonerror="true">
+            <sysproperty key="ringo.home" path="${ringo}"/>
+            <arg path="externals/buildkit/lib/buildkit/build.js"/>
+            <arg line="-d -o ${build}/${ant.project.name}/WEB-INF/app/static/script buildjs-debug.cfg"/>
+        </java>
 
     </target>
-    
+
     <target name="dist" depends="init, postcompile"/>
-    
+
     <!-- this target is useful when init has already been run -->
     <target name="postcompile" depends="test, buildjs, redist"/>
-    
+
     <target name="redist">
 
         <mkdir dir="${build}/${ant.project.name}"/>
-        
+
         <copy todir="${build}/${ant.project.name}">
             <fileset dir="src/main/webapp/">
             </fileset>
@@ -109,7 +114,7 @@
         <copy todir="${build}/${ant.project.name}/WEB-INF/app/static/externals/PrintPreview/resources">
             <fileset dir="app/static/externals/PrintPreview/resources"/>
         </copy>
-        
+
     </target>
 
     <target name="war" depends="dist">
@@ -117,7 +122,7 @@
             <fileset dir="${build}/${ant.project.name}"/>
         </war>
     </target>
-    
+
     <target name="initcargo">
         <echo message="pulling in Cargo for remote deployment"/>
         <mkdir dir="${build}/lib"/>
@@ -126,7 +131,7 @@
         <get skipexisting="true" src="http://repo1.maven.org/maven2/commons-discovery/commons-discovery/0.4/commons-discovery-0.4.jar" dest="${build}/lib/commons-discovery.jar"/>
         <get skipexisting="true" src="http://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" dest="${build}/lib/commons-logging.jar"/>
     </target>
-    
+
     <target name="deploy" depends="initcargo, war">
 
         <taskdef resource="cargo.tasks">
@@ -151,7 +156,7 @@
         </cargo>
 
     </target>
-    
+
     <target name="undeploy" depends="initcargo">
 
         <taskdef resource="cargo.tasks">
