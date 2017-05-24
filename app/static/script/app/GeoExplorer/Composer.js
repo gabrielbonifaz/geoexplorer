@@ -35,7 +35,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
     logoutText: "Logout, {user}",
     loginErrorText: "Invalid username or password.",
     userFieldText: "User",
-    passwordFieldText: "Password", 
+    passwordFieldText: "Password",
     saveErrorText: "Trouble saving: ",
     tableText: "Table",
     queryText: "Query",
@@ -180,13 +180,13 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 actionTarget: "paneltbar"
             }
         ];
-        
+
         GeoExplorer.Composer.superclass.constructor.apply(this, arguments);
     },
-    
+
     loadConfig: function(config) {
         GeoExplorer.Composer.superclass.loadConfig.apply(this, arguments);
-        
+
         var query = Ext.urlDecode(document.location.search.substr(1));
         if (query && query.styler) {
             for (var i=config.map.layers.length-1; i>=0; --i) {
@@ -206,7 +206,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                     this.mapPanel.map.zoomToExtent(extent);
                 }
                 this.doAuthorized(styler.roles, styler.addOutput, styler);
-            }, this, {single: true});            
+            }, this, {single: true});
         }
     },
 
@@ -303,8 +303,8 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 handler: submitLogin,
                 scope: this
             }],
-            keys: [{ 
-                key: [Ext.EventObject.ENTER], 
+            keys: [{
+                key: [Ext.EventObject.ENTER],
                 handler: submitLogin,
                 scope: this
             }]
@@ -337,7 +337,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 scope: this
             });
         }
-                
+
         var win = new Ext.Window({
             title: this.loginText,
             layout: "fit",
@@ -388,7 +388,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
      * Create the various parts that compose the layout.
      */
     initPortal: function() {
-        
+
         var westPanel = new gxp.CrumbPanel({
             id: "tree",
             region: "west",
@@ -455,7 +455,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 }
             }
         });
-        
+
         // TODO: continue making this Google Earth Panel more independent
         // Currently, it's too tightly tied into the viewer.
         // In the meantime, we keep track of all items that the were already
@@ -492,7 +492,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
         googleEarthPanel.on("hide", function() {
             // re-enable all tools
             toolbar.enable();
-            
+
             var layersContainer = Ext.getCmp("tree");
             var layersToolbar = layersContainer && layersContainer.getTopToolbar();
             if (layersToolbar) {
@@ -517,7 +517,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
             ],
             activeItem: 0
         });
-        
+
         this.portalItems = [{
             region: "center",
             layout: "border",
@@ -528,10 +528,10 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 southPanel
             ]
         }];
-        
-        GeoExplorer.Composer.superclass.initPortal.apply(this, arguments);        
+
+        GeoExplorer.Composer.superclass.initPortal.apply(this, arguments);
     },
-    
+
     /**
      * api: method[createTools]
      * Create the toolbar configuration for the main view.
@@ -553,7 +553,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 this.showLogout(user);
             }
         }
-        
+
         new Ext.Button({
             id: "mapmenu",
             text: this.mapText,
@@ -578,7 +578,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                     scope: this,
                     iconCls: "icon-save"
                 }]
-            })            
+            })
         });
     },
 
@@ -602,8 +602,8 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
     /** private: method[save]
      *
      * Saves the map config and displays the URL in a window.
-     */ 
-    save: function(callback, scope) {
+     */
+    /*save: function(callback, scope) {
         var configStr = Ext.util.JSON.encode(this.getState());
         var method, url;
         if (this.id) {
@@ -625,12 +625,12 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
             },
             scope: this
         });
-    },
-        
+    },*/
+
     /** private: method[handleSave]
      *  :arg: ``XMLHttpRequest``
      */
-    handleSave: function(request) {
+    /*handleSave: function(request) {
         if (request.status == 200) {
             var config = Ext.util.JSON.decode(request.responseText);
             var mapId = config.id;
@@ -641,18 +641,18 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
         } else {
             throw this.saveErrorText + request.responseText;
         }
-    },
+    },*/
 
     /** private: method[showEmbedWindow]
      */
     showEmbedWindow: function() {
-       var toolsArea = new Ext.tree.TreePanel({title: this.toolsTitle, 
+       var toolsArea = new Ext.tree.TreePanel({title: this.toolsTitle,
            autoScroll: true,
            root: {
-               nodeType: 'async', 
-               expanded: true, 
+               nodeType: 'async',
+               expanded: true,
                children: this.viewerTools
-           }, 
+           },
            rootVisible: false,
            id: 'geobuilder-0'
        });
