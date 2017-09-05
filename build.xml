@@ -44,7 +44,7 @@
     <target name="buildjs">
 
         <mkdir dir="${build}/${ant.project.name}/WEB-INF/app/static/script"/>
-        <java jar="${ringo}/run.jar" fork="true" failonerror="true">
+        <java jar="${ringo}/run.jar" fork="true" failonerror="false">
             <sysproperty key="ringo.home" path="${ringo}"/>
             <arg path="externals/buildkit/lib/buildkit/build.js"/>
             <arg line="-o ${build}/${ant.project.name}/WEB-INF/app/static/script buildjs.cfg"/>
