@@ -111,7 +111,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 actions: ["mapmenu"],  actionTarget: "paneltbar"
             }, {
                 ptype: "gxp_print",
-                customParams: {outputFilename: 'GeoExplorer-print'},
+                // customParams: {outputFilename: 'GeoExplorer-print'},
                 printService: config.printService,
                 actionTarget: "paneltbar",
                 showButtonText: true

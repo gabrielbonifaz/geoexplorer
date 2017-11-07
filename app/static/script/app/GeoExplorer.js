@@ -88,13 +88,13 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
     contactText: "Contact",
     aboutThisMapText: "About this Map",
     // End i18n.
-    
+
     /**
      * private: property[mapPanel]
      * the :class:`GeoExt.MapPanel` instance for the main viewport
      */
     mapPanel: null,
-    
+
     constructor: function(config) {
         this.mapItems = [
             {
@@ -121,54 +121,54 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
             text: gxp.plugins.Print.prototype.tooltip,
             ptype: "gxp_print",
             iconCls: "gxp-icon-print",
-            customParams: {outputFilename: 'GeoExplorer-print'},
+            // customParams: {outputFilename: 'GeoExplorer-print'},
             printService: config.printService,
             checked: true
         }, {
-            leaf: true, 
-            text: gxp.plugins.Navigation.prototype.tooltip, 
-            checked: true, 
+            leaf: true,
+            text: gxp.plugins.Navigation.prototype.tooltip,
+            checked: true,
             iconCls: "gxp-icon-pan",
-            ptype: "gxp_navigation", 
+            ptype: "gxp_navigation",
             toggleGroup: "navigation"
         }, {
-            leaf: true, 
-            text: gxp.plugins.WMSGetFeatureInfo.prototype.infoActionTip, 
-            checked: true, 
+            leaf: true,
+            text: gxp.plugins.WMSGetFeatureInfo.prototype.infoActionTip,
+            checked: true,
             iconCls: "gxp-icon-getfeatureinfo",
             ptype: "gxp_wmsgetfeatureinfo",
             format: 'grid',
             toggleGroup: "interaction"
         }, {
-            leaf: true, 
-            text: gxp.plugins.Measure.prototype.measureTooltip, 
-            checked: true, 
+            leaf: true,
+            text: gxp.plugins.Measure.prototype.measureTooltip,
+            checked: true,
             iconCls: "gxp-icon-measure-length",
             ptype: "gxp_measure",
             controlOptions: {immediate: true},
             toggleGroup: "interaction"
         }, {
-            leaf: true, 
-            text: gxp.plugins.Zoom.prototype.zoomInTooltip + " / " + gxp.plugins.Zoom.prototype.zoomOutTooltip, 
-            checked: true, 
+            leaf: true,
+            text: gxp.plugins.Zoom.prototype.zoomInTooltip + " / " + gxp.plugins.Zoom.prototype.zoomOutTooltip,
+            checked: true,
             iconCls: "gxp-icon-zoom-in",
             ptype: "gxp_zoom"
         }, {
-            leaf: true, 
-            text: gxp.plugins.NavigationHistory.prototype.previousTooltip + " / " + gxp.plugins.NavigationHistory.prototype.nextTooltip, 
-            checked: true, 
+            leaf: true,
+            text: gxp.plugins.NavigationHistory.prototype.previousTooltip + " / " + gxp.plugins.NavigationHistory.prototype.nextTooltip,
+            checked: true,
             iconCls: "gxp-icon-zoom-previous",
             ptype: "gxp_navigationhistory"
         }, {
-            leaf: true, 
-            text: gxp.plugins.ZoomToExtent.prototype.tooltip, 
-            checked: true, 
+            leaf: true,
+            text: gxp.plugins.ZoomToExtent.prototype.tooltip,
+            checked: true,
             iconCls: gxp.plugins.ZoomToExtent.prototype.iconCls,
             ptype: "gxp_zoomtoextent"
         }, {
-            leaf: true, 
-            text: gxp.plugins.Legend.prototype.tooltip, 
-            checked: true, 
+            leaf: true,
+            text: gxp.plugins.Legend.prototype.tooltip,
+            checked: true,
             iconCls: "gxp-icon-legend",
             ptype: "gxp_legend"
         }, {
@@ -184,10 +184,10 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
         }];
 
         GeoExplorer.superclass.constructor.apply(this, arguments);
-    }, 
+    },
 
     loadConfig: function(config) {
-        
+
         var mapUrl = window.location.hash.substr(1);
         var match = mapUrl.match(/^maps\/(\d+)$/);
         if (match) {
@@ -235,7 +235,7 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
                 /**
                  * Special handling for links from local GeoServer.
                  *
-                 * The layers query string value indicates layers to add as 
+                 * The layers query string value indicates layers to add as
                  * overlays from the local source.
                  *
                  * The bbox query string value indicates the initial extent in
@@ -261,32 +261,32 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
                      config.sources.local.requiredProperties = [];
                  }
             }
-            
+
             this.applyConfig(config);
         }
-        
+
     },
-    
+
     displayXHRTrouble: function(msg, status) {
-        
+
         Ext.Msg.show({
             title: this.xhrTroubleText + status,
             msg: msg,
             icon: Ext.MessageBox.WARNING
         });
-        
+
     },
-    
+
     /** private: method[initPortal]
      * Create the various parts that compose the layout.
      */
     initPortal: function() {
-        this.createTools();        
-        GeoExplorer.superclass.initPortal.apply(this, arguments);        
+        this.createTools();
+        GeoExplorer.superclass.initPortal.apply(this, arguments);
     },
-    
+
     /** private: method[createTools]
-     * Create the toolbar configuration for the main panel.  This method can be 
+     * Create the toolbar configuration for the main panel.  This method can be
      * extended by derived explorer classes such as :class:`GeoExplorer.Composer`
      * or :class:`GeoExplorer.Viewer` to provide specialized controls.
      */
@@ -299,7 +299,7 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
             scope: this
         });
     },
-    
+
     /** private: method[showUrl]
      */
     showUrl: function() {
@@ -322,7 +322,7 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
         win.show();
         win.items.first().selectText();
     },
-    
+
     /** api: method[getBookmark]
      *  :return: ``String``
      *
@@ -333,12 +333,12 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
             OpenLayers.Util.getParameters(),
             {q: Ext.util.JSON.encode(this.getState())}
         );
-        
+
         // disregard any hash in the url, but maintain all other components
-        var url = 
+        var url =
             document.location.href.split("?").shift() +
             "?" + Ext.urlEncode(params);
-        
+
         return url;
     },
 
@@ -352,8 +352,8 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
         });
 
         var about = Ext.applyIf(this.about, {
-            title: '', 
-            "abstract": '', 
+            title: '',
+            "abstract": '',
             contact: ''
         });
 
@@ -382,7 +382,7 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
         });
         win.show();
     },
-    
+
     /** private: method[getState]
      *  :returns: ``Òbject`` the state of the viewer
      */
@@ -393,4 +393,3 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
         return state;
     }
 });
-
