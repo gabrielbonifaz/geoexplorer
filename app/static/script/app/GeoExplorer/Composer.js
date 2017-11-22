@@ -119,7 +119,9 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 actions: ["-"],
                 actionTarget: "paneltbar"
             }, {
-                ptype: "gxp_wmsgetfeatureinfo", format: 'grid',
+                ptype: "gxp_wmsgetfeatureinfo",
+                format: 'grid',
+                drillDown: true,
                 toggleGroup: "interaction",
                 showButtonText: true,
                 actionTarget: "paneltbar"
