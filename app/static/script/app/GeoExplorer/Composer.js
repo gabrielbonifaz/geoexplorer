@@ -90,10 +90,10 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
             }, {
                 ptype: "gxp_zoomtolayerextent",
                 actionTarget: {target: "layers.contextMenu", index: 0}
-            }, {
+            }, /* {
                 ptype: "gxp_googleearth",
                 actionTarget: ["map.tbar", "globe.tbar"]
-            }, {
+            }, */ {
                 ptype: "gxp_navigation", toggleGroup: "navigation"
             }, {
                 ptype: "gxp_zoom", toggleGroup: "navigation",
@@ -103,9 +103,9 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 ptype: "gxp_navigationhistory"
             }, {
                 ptype: "gxp_zoomtoextent"
-            }, {
+            }, /* {
                 actions: ["aboutbutton"],  actionTarget: "paneltbar"
-            }, {
+            }, */ {
                 actions: ["-"], actionTarget: "paneltbar"
             }, {
                 actions: ["mapmenu"],  actionTarget: "paneltbar"
