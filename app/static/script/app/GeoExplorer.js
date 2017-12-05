@@ -35,7 +35,7 @@ Ext.override(Ext.dd.DragTracker, {
     Ext.preg("gx_wmssource", gxp.plugins.WMSSource);
     Ext.preg("gx_olsource", gxp.plugins.OLSource);
     Ext.preg("gx_googlesource", gxp.plugins.GoogleSource);
-    Ext.preg("gx_bingsource", gxp.plugins.BingSource);
+    // Ext.preg("gx_bingsource", gxp.plugins.BingSource);
     Ext.preg("gx_osmsource", gxp.plugins.OSMSource);
     // use layermanager instead of layertree
     Ext.preg("gxp_layertree", gxp.plugins.LayerManager);
