@@ -94,7 +94,7 @@ OpenLayers.Dimension.Agent.WMS = OpenLayers.Class(OpenLayers.Dimension.Agent, {
         if(inrange) {
             var validLayers = OpenLayers.Array.filter(this.layers, function(lyr) {
                 return lyr.visibility && lyr.calculateInRange();
-            });            
+            });
             this.loadQueue = validLayers.length;
 
             this.canTick = !this.loadQueue;
@@ -124,7 +124,7 @@ OpenLayers.Dimension.Agent.WMS = OpenLayers.Class(OpenLayers.Dimension.Agent, {
                     if(layer.map){
                         layer.map.events.triggerEvent("changelayer", {
                             layer: layer, property: "visibility"
-                        });    
+                        });
                     }
                 }
             }
@@ -135,7 +135,7 @@ OpenLayers.Dimension.Agent.WMS = OpenLayers.Class(OpenLayers.Dimension.Agent, {
         var minValue;
         if(this.tickMode == 'range'){
             minValue = value - this.rangeInterval;
-        } 
+        }
         else if (this.tickMode == 'cumulative'){
             minValue = this.range[0];
         } else {
@@ -199,7 +199,7 @@ OpenLayers.Dimension.Agent.WMS = OpenLayers.Class(OpenLayers.Dimension.Agent, {
                         break;
                     case OpenLayers.TimeUnit.HOURS:
                         str = str.split(':')[0] + ':00Z';
-                        break; 
+                        break;
                 }
             }
             return str;
@@ -230,7 +230,7 @@ OpenLayers.Dimension.Agent.WMS = OpenLayers.Class(OpenLayers.Dimension.Agent, {
      * @param {Array[{Numbers}]} MUST be a sorted value array
      */
     findNearestValues : function(testValue, values) {
-        return OpenLayers.Control.DimensionManager.findNearestValues(testValue,values);
+        return this.dimensionManager.findNearestValues(testValue,values);
     },
 
     onLayerLoadEnd : function() {
