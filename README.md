@@ -1,3 +1,1 @@
-# NOTICE
-
-The GeoExplorer application has been folded into the [Suite repository](https://github.com/opengeo/suite).  Please find information on the [Suite Client SDK](http://opengeo.org/technology/sdk/) for detail on developing GeoExplorer-like applications.
+**GeoExplorer** is a web application, based on the GeoExt framework, for composing and publishing web maps with OGC and other web based GIS Services. GeoExplorer is used inside GeoNode to provide many of the GIS and cartography functions that are a core part of the application. 
